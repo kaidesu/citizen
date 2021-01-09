@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    public function update()
+    public function update(Request $request)
     {
         $user           = auth()->user();
         $password       = $request->get('password');
