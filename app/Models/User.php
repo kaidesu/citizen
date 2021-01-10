@@ -47,4 +47,18 @@ class User extends Authenticatable
     {
         return strtoupper($this->name[0]);
     }
+
+    public function getHashAttribute()
+    {
+        $email = $this->email;
+        $email = trim($this->email);
+        $email = strtolower($this->email);
+
+        return md5($email);
+    }
+
+    public function avatar()
+    {
+        return '/avatar/'.$this->hash;
+    }
 }

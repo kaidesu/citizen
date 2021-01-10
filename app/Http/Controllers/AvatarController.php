@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AvatarController extends Controller
 {
-    public function show()
+    public function show($hash)
     {
-        $avatar = $this->generateAvatar(auth()->user()->letter);
+
+        try {
+            $user = User::where(DB::raw('md5(email)'), $hash)->firstOrFail();
+        } catch (\Exception $e) {
+            return abort(404);
+        }
+
+        $avatar = $this->generateAvatar($user->letter);
 
         return response()->stream(function() use ($avatar) {
             imagepng($avatar);
@@ -43,13 +52,13 @@ class AvatarController extends Controller
     {
         $width    = 500;
         $height   = 500;
-        $font     = resource_path('fonts/Roboto-Regular.ttf');
-        $fontSize = 140;
+        $font     = resource_path('fonts/Roboto-Bold.ttf');
+        $fontSize = 160;
         $image    = @imagecreate($width, $height) or die('Cannot initialize new GD image stream');
 
-        imagecolorallocate($image, 0, 0, 0);
+        imagecolorallocate($image, 229, 231, 235);
 
-        $fontColor       = imagecolorallocate($image, 255, 255, 255);
+        $fontColor       = imagecolorallocate($image, 75, 85, 99);
         $textBoundingBox = imagettfbbox($fontSize, 0, $font, $text);
 
         $x = abs(ceil(($width - $textBoundingBox[2]) / 2));

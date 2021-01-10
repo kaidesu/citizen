@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::pattern('hash', '[a-z0-9]+');
+
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function() {
@@ -26,7 +28,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
-    Route::get('/avatar', [AvatarController::class, 'show'])->name('avatar.show');
+    Route::get('/avatar/{hash}', [AvatarController::class, 'show'])->name('avatar.show');
 
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
     Route::post('/avatar', [AvatarController::class, 'update'])->name('avatar.update');

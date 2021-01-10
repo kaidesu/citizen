@@ -11,6 +11,10 @@
                     <x-table.cell>
                         <div class="flex items-center">
                             <div>
+                                <img src="{{ $user->avatar() }}" alt="User Avatar" class="w-10 h-10 rounded-full mr-3">
+                            </div>
+
+                            <div>
                                 <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
                                     {{ $user->name }}
                                 </div>

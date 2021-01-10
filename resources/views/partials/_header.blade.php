@@ -45,7 +45,8 @@
                     <div>
                         <button @click="open = ! open" class="bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" id="user-menu" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
-                            <span class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">{{ auth()->user()->letter }}</span>
+                            <img src="{{ auth()->user()->avatar() }}" class="h-8 w-8 rounded-full">
+                            {{-- <span class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">{{ auth()->user()->letter }}</span> --}}
                         </button>
                     </div>
 
