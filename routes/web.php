@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
+    Route::get('/avatar', [AvatarController::class, 'show'])->name('avatar.show');
+
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
     Route::post('/avatar', [AvatarController::class, 'update'])->name('avatar.update');
     Route::post('/personal', [PersonalController::class, 'update'])->name('personal.update');
